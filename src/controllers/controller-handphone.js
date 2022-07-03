@@ -51,7 +51,8 @@ module.exports = {
         let data = {
             seri: resi,
             nama: req.body.nama,
-            jenis: req.body.jenis
+            jenis: req.body.jenis,
+            tanggal_produksi: req.body.tanggal_produksi
         }
         pool.getConnection(function (err, connection) {
             if (err) throw err;
@@ -75,7 +76,8 @@ module.exports = {
         let dataEdit = {
             seri: resi,
             nama: req.body.nama,
-            jenis: req.body.jenis
+            jenis: req.body.jenis,
+            tanggal_produksi: req.body.tanggal_produksi
         }
         let id = req.body.id
         pool.getConnection(function (err, connection) {
