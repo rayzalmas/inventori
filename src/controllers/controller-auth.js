@@ -38,7 +38,7 @@ module.exports = {
                     const tokenEmail = req.body.email;
                     const payload = { email: tokenEmail };
                     const aToken = generateAccessToken(payload);
-                    const rToken = jwt.sign(payload, process.env.REFRESH_TOKEN);
+                    const rToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET);
                     refreshTokensDB.push(rToken);
                     res.json({ AccessToken: aToken, RefreshToken: rToken, message: 'You are logged-in' });
                 } else {
@@ -66,7 +66,7 @@ module.exports = {
         if (!refreshTokensDB.includes(token)) {
             res.json({ message: 'Forbidden' });
         }
-        jwt.verify(token, process.env.REFRESH_TOKEN, (err, payload) => {
+        jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, payload) => {
             if (err) {
                 res.json({ message: 'Some error occured' });
             }
@@ -92,5 +92,5 @@ module.exports = {
 }
 
 function generateAccessToken(payload) {
-    return jwt.sign(payload, process.env.ACCESS_TOKEN, { expiresIn: '2m' });
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '2m' });
 }

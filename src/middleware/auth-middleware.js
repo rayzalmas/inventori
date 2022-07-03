@@ -10,7 +10,7 @@ function AuthenticateAccessToken(req, res, next) {
         res.json({ message: 'token not found.' });
     }
     else {
-        let access_token = process.env.ACCESS_TOKEN;
+        let access_token = process.env.ACCESS_TOKEN_SECRET;
         jwt.verify(token, access_token, function (err, decoded) {
             if (err) {
                 res.json({ message: 'Invalid access token.' });

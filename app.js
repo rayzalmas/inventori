@@ -8,6 +8,6 @@ app.use(bp.json());
 const appRoute = require('./src/routes');
 app.use('/', appRoute);
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8080, () => {
     console.log('Server running: port 8080');
 });
