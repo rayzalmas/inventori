@@ -3,7 +3,7 @@ const authMiddleware = require("../middleware/auth-middleware");
 const { auth } = require('../controllers');
 const { handphone } = require('../controllers');
 
-router.get('/phone/', handphone.getAllData);
+router.get('/phone/', authMiddleware, handphone.getAllData);
 router.get('/phone/:id', authMiddleware, handphone.getDetailData);
 router.post('/phone/add', authMiddleware, handphone.addData);
 router.post('/phone/edit', authMiddleware, handphone.editData);
